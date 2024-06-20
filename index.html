@@ -75,10 +75,12 @@
             font-size: 1.3rem;
             margin: 70px 0;
         }
-        .leftSection .buttons{
+
+        .leftSection .buttons {
             padding: 50px 0;
         }
-        .leftSection .btn{
+
+        .leftSection .btn {
             padding: 12px;
             background: #1e2167;
             color: white;
@@ -123,7 +125,7 @@
             display: flex;
         }
 
-        .secondSection .vertical{
+        .secondSection .vertical {
             height: 93px;
             width: 1px;
             background-color: white;
@@ -152,24 +154,57 @@
             width: 150px;
             font-size: 9px;
         }
-        footer{
+
+        footer {
             background-color: #0e0e1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding-top: 20px;
         }
-        .footer{
+
+        .footer {
             display: flex;
-            padding: 23px 122px;
+            flex-wrap: wrap;
             justify-content: space-evenly;
+            padding: 20px 10px;
+            text-align: center;
         }
-        .footer ul{
+
+        .footer-section {
+            margin: 10px 0;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            color: #ffcc00;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
             list-style-type: none;
+            padding: 0;
         }
-        footer>div{
-            width: 323px;
+
+        .footer-section ul li {
+            margin: 8px 0;
         }
-        footer .footer-rights{
+
+        .footer-section ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ffcc00;
+        }
+
+        .footer-rights {
             text-align: center;
             color: grey;
-            padding: 12px 0;
+            padding: 10px 0;
+            border-top: 1px solid #444;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -182,7 +217,6 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About </a></li>
-                    <li><a href="#">Services</a></li>
                     <li><a href="#">Project</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
@@ -222,7 +256,7 @@
                         porro eum eius distinctio exercitationem dolor sequi consequatur facere.
                     </div>
                 </div>
-                
+
                 <div class="vertical">
                     <img class="image-top" src="img2.png" alt="">
                     <div class="vertical-title">
@@ -266,7 +300,7 @@
                     </div>
                 </div>
 
-                
+
                 <div class="vertical"></div>
                 <div class="vertical"></div>
             </div>
@@ -275,41 +309,42 @@
 
     <footer>
         <div class="footer">
-            <div class="footer-first">
-                Himanshu Developer Portfolio
+            <div class="footer-section">
+                <h3>Himanshu Developer Portfolio</h3>
             </div>
-            <div class="footer-Second">
+            <div class="footer-section">
                 <ul>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
-            <div class="footer-third">
+            <div class="footer-section">
                 <ul>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Dev.to</a></li>
+                    <li><a href="#">CodeChef</a></li>
                 </ul>
             </div>
-            <div class="footer-fourth">
+            <div class="footer-section">
                 <ul>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Help</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-rights">
-            Copyright &#169; www.hs17.com | All rights reserved
+            &copy; Himanshu Sharma's Portfolio | All rights reserved
         </div>
     </footer>
+
 
 
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
