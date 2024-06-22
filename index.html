@@ -8,16 +8,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            cursor: none;
         }
 
         body {
             background-color: rgb(0, 0, 33);
             color: white;
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        #cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         nav {
@@ -26,6 +44,10 @@
             align-items: center;
             height: 80px;
             background-color: rgb(18, 18, 62);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
 
         nav ul {
@@ -41,12 +63,16 @@
         nav ul li a {
             text-decoration: none;
             color: white;
+            transition: color 0.3s ease, font-size 0.3s ease;
         }
 
         nav ul li a:hover {
             color: rgb(153, 153, 226);
-            font-size: 1.01rem;
+            font-size: 1.05rem;
+        }
 
+        main {
+            margin-top: 80px;
         }
 
         main hr {
@@ -65,6 +91,7 @@
             justify-content: space-around;
             align-items: center;
             margin: 80px 0;
+            min-height: calc(100vh - 80px);
         }
 
         .firstSection>div {
@@ -87,7 +114,13 @@
             border: 2px solid white;
             border-radius: 6px;
             font-size: 20px;
-            cursor: pointer;
+            cursor: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .leftSection .btn:hover {
+            background: #2a2e8e;
+            transform: scale(1.05);
         }
 
         .rightSection {
@@ -105,12 +138,14 @@
         .secondSection {
             max-width: 80vw;
             margin: auto;
-            height: 80vh;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .secondSection h1 {
             font-size: 1.9rem;
-
         }
 
         .text-gray {
@@ -154,6 +189,49 @@
             width: 150px;
             font-size: 9px;
         }
+
+        .techSection {
+            max-width: 80vw;
+            margin: auto;
+            padding: 50px 0;
+        }
+
+        .techGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .techItem {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .techItem:hover {
+            transform: translateY(-5px);
+            background-color: #9c97f1;
+        }
+
+        .techItem img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+
+        .techItem h3 {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
 
         footer {
             background-color: #0e0e1a;
@@ -210,21 +288,23 @@
 </head>
 
 <body>
+    <div id="cursor"></div>
     <header>
         <nav>
             <div class="left">Himanshu Sharma</div>
             <div class="right">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About </a></li>
-                    <li><a href="#">Project</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#tech">Tech & Tools</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
     </header>
     <main>
-        <section class="firstSection">
+        <section id="home" class="firstSection">
             <div class="leftSection">
                 Hi, My name is <span class="purple">Himanshu</span>
                 <div>and I am a passionate</div>
@@ -237,88 +317,126 @@
                 </div>
             </div>
             <div class="rightSection">
-                <img src="img1.jpeg" alt="">
+                <img src="img1.jpeg" alt="Himanshu Sharma">
             </div>
         </section>
         <hr>
-        <section class="secondSection">
+        <section id="experience" class="secondSection">
             <span class="text-gray">What I've done so far </span>
-            <h1>Works Experiences</h1>
+            <h1>Work Experience</h1>
 
             <div class="box">
                 <div class="vertical">
                     <img class="image-top" src="img2.png" alt="">
                     <div class="vertical-title">
-                        Html Developer 2010-2012
+                        HTML Developer (2010-2012)
                     </div>
                     <div class="vertical-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus quo sed ab eveniet,
-                        porro eum eius distinctio exercitationem dolor sequi consequatur facere.
+                        Developed responsive and accessible web pages using HTML5 and CSS3.
                     </div>
                 </div>
 
                 <div class="vertical">
                     <img class="image-top" src="img2.png" alt="">
                     <div class="vertical-title">
-                        Node.Js Developer(2012-2014)
+                        Node.js Developer (2012-2014)
                     </div>
                     <div class="vertical-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus quo sed ab eveniet,
-                        porro eum eius distinctio exercitationem dolor sequi consequatur facere.
-                    </div>
-                </div>
-                <div class="vertical">
-                    <img class="image-top" src="img2.png" alt="">
-                    <div class="vertical-title">
-                        Html Developer 2010-2012
-                    </div>
-                    <div class="vertical-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus quo sed ab eveniet,
-                        porro eum eius distinctio exercitationem dolor sequi consequatur facere.
+                        Built scalable backend services using Node.js and Express.js framework.
                     </div>
                 </div>
 
                 <div class="vertical">
                     <img class="image-top" src="img2.png" alt="">
                     <div class="vertical-title">
-                        Html Developer 2010-2012
+                        Full Stack Developer (2014-2016)
                     </div>
                     <div class="vertical-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus quo sed ab eveniet,
-                        porro eum eius distinctio exercitationem dolor sequi consequatur facere.
+                        Developed end-to-end web applications using MERN stack (MongoDB, Express, React, Node.js).
                     </div>
                 </div>
 
                 <div class="vertical">
                     <img class="image-top" src="img2.png" alt="">
                     <div class="vertical-title">
-                        Html Developer 2010-2012
+                        DevOps Engineer (2016-2018)
                     </div>
                     <div class="vertical-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus quo sed ab eveniet,
-                        porro eum eius distinctio exercitationem dolor sequi consequatur facere.
+                        Implemented CI/CD pipelines and managed cloud infrastructure on AWS.
                     </div>
                 </div>
 
-
-                <div class="vertical"></div>
-                <div class="vertical"></div>
+                <div class="vertical">
+                    <img class="image-top" src="img2.png" alt="">
+                    <div class="vertical-title">
+                        Tech Lead (2018-Present)
+                    </div>
+                    <div class="vertical-desc">
+                        Leading a team of developers, architecting solutions, and managing project deliverables.
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+        <section id="tech" class="techSection">
+            <h1>Tech & Tools</h1>
+            <div class="techGrid">
+                <div class="techItem">
+                    <img src="https://img.icons8.com/color/452/mongodb.png" alt="MongoDB">
+                    <h3>MongoDB</h3>
+                </div>
+                <div class="techItem">
+                    <img src="https://img.icons8.com/ios-filled/452/sql.png" alt="SQL">
+                    <h3>SQL</h3>
+                </div>
+                <div class="techItem">
+                    <img src="https://img.icons8.com/color/452/figma--v1.png" alt="Figma/Canva">
+                    <h3>Figma/Canva</h3>
+                </div>
+                <div class="techItem">
+                    <img src="https://img.icons8.com/color/452/flutter.png" alt="Flutter">
+                    <h3>Flutter</h3>
+                </div>
+                <div class="techItem">
+                    <img src="https://img.icons8.com/color/452/visual-studio-code-2019.png" alt="VS Code">
+                    <h3>VS Code</h3>
+                </div>
+                <div class="techItem">
+                    <img src="https://img.icons8.com/material-outlined/452/github.png" alt="Github">
+                    <h3>Github</h3>
+                </div>
+                <div class="techItem">
+                    <img src="https://img.icons8.com/color/452/html-5--v1.png" alt="HTML/CSS and JS">
+                    <h3>HTML/CSS and JS</h3>
+                </div>
+                <div class="techItem">
+                    <img src="https://img.icons8.com/color/452/react-native.png" alt="JS Frameworks">
+                    <h3>JS Frameworks</h3>
+                </div>
+                <div class="techItem">
+                    <img src="https://img.icons8.com/color/452/python.png" alt="C++/Java/Python">
+                    <h3>C++/Java/Python</h3>
+                </div>
+                <div class="techItem">
+                    <img src="https://img.icons8.com/color/452/azure-1.png" alt="Azure / AWS">
+                    <h3>Azure / AWS</h3>
+                </div>
             </div>
         </section>
     </main>
-
-    <footer>
+    <br>
+    <footer id="contact">
         <div class="footer">
             <div class="footer-section">
                 <h3>Himanshu Developer Portfolio</h3>
             </div>
             <div class="footer-section">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#tech">Tech & Tools</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -345,13 +463,93 @@
         </div>
     </footer>
 
-
-
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script>
+        // Typed.js initialization
         var typed = new Typed('#element', {
-            strings: ['Web Developer', 'Programmar', 'Student'],
+            strings: ['Web Developer', 'Programmer', 'Student'],
             typeSpeed: 75,
+            backSpeed: 50,
+            loop: true
+        });
+
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mouseout', () => {
+            cursor.style.display = 'none';
+        });
+
+        document.addEventListener('mouseover', () => {
+            cursor.style.display = 'block';
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+        });
+
+        // Smooth scrolling for navigation
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // GSAP animations
+        gsap.from('nav', { duration: 1, y: '-100%', ease: 'bounce' });
+        gsap.from('.firstSection > div', { duration: 1, opacity: 0, x: -50, stagger: 0.2 });
+        gsap.from('.secondSection .vertical', {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.secondSection',
+                start: 'top center'
+            }
+        });
+
+        // Tech & Tools section animation
+        gsap.from('.techItem', {
+            duration: 0.8,
+            opacity: 0,
+            y: 50,
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: '.techSection',
+                start: 'top center'
+            }
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.firstSection');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Hover effect for tech items
+        const techItems = document.querySelectorAll('.techItem');
+        techItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(item, { scale: 1.05, duration: 0.3 });
+            });
+            item.addEventListener('mouseleave', () => {
+                gsap.to(item, { scale: 1, duration: 0.3 });
+            });
         });
     </script>
 </body>
