@@ -78,3 +78,19 @@ techItems.forEach(item => {
         gsap.to(item, { scale: 1, duration: 0.3 });
     });
 });
+
+
+// JavaScript code to update visitor count
+let count = 0; // Initial count
+
+// Check if there's a count stored in localStorage
+if (localStorage.getItem('visitorCount')) {
+    count = parseInt(localStorage.getItem('visitorCount'));
+}
+
+// Update the visitor count display
+document.getElementById('visitorCount').textContent = count;
+
+// Increment the count on each visit and store in localStorage
+count++;
+localStorage.setItem('visitorCount', count);
