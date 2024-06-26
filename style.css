@@ -228,3 +228,65 @@ footer {
     border-top: 1px solid #444;
     margin-top: 20px;
 }
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 50px 0;
+  }
+  
+  .carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-item {
+    flex: 0 0 20%; /* 5 items visible, so each takes up 20% */
+    padding: 0 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 300px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 150px; /* Fixed height for image */
+    object-fit: cover;
+  }
+  
+  .card h3 {
+    padding: 15px 15px 0;
+    color: #333;
+    font-size: 16px;
+    flex-grow: 0;
+  }
+  
+  .card p.description {
+    padding: 0 15px 15px;
+    color: #666;
+    font-size: 14px;
+    flex-grow: 1;
+    overflow: hidden;
+    /* display: none; Hide description by default */
+  }
+  
+  .carousel-item.active {
+    transform: scale(1.1);
+    z-index: 1;
+  }
+  
+  .carousel-item.active .card {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  
+  .carousel-item.active .card p.description {
+    display: block; /* Show description for active item */
+  }

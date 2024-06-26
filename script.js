@@ -79,18 +79,47 @@ techItems.forEach(item => {
     });
 });
 
+const carouselSlide = document.querySelector('.carousel-slide');
+const carouselItems = document.querySelectorAll('.carousel-item');
 
-// JavaScript code to update visitor count
-let count = 0; // Initial count
+let counter = 0;
+const size = carouselItems[0].clientWidth;
+const visibleItems = 5; // Number of items visible at once
 
-// Check if there's a count stored in localStorage
-if (localStorage.getItem('visitorCount')) {
-    count = parseInt(localStorage.getItem('visitorCount'));
+// Clone the first 'visibleItems' number of items and append them to the end
+for (let i = 0; i < visibleItems; i++) {
+  const clone = carouselItems[i].cloneNode(true);
+  carouselSlide.appendChild(clone);
 }
 
-// Update the visitor count display
-document.getElementById('visitorCount').textContent = count;
+function moveCarousel() {
+  counter++;
+  carouselSlide.style.transition = "transform 0.5s ease-in-out";
+  carouselSlide.style.transform = `translateX(${-size * counter}px)`;
 
-// Increment the count on each visit and store in localStorage
-count++;
-localStorage.setItem('visitorCount', count);
+  if (counter >= carouselItems.length) {
+    setTimeout(() => {
+      carouselSlide.style.transition = "none";
+      counter = 0;
+      carouselSlide.style.transform = `translateX(0)`;
+    }, 500);
+  }
+
+  updateActiveItem();
+}
+
+function updateActiveItem() {
+  const items = document.querySelectorAll('.carousel-item');
+  items.forEach((item, index) => {
+    item.classList.remove('active');
+    if (index === (counter + 2) % items.length) {
+      item.classList.add('active');
+    }
+  });
+}
+
+setInterval(moveCarousel, 3000); // Change slide every 3 seconds
+
+// Initial setup
+carouselSlide.style.transform = `translateX(-${size * counter}px)`;
+updateActiveItem();
