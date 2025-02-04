@@ -129,31 +129,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const carouselItems = Array.from(document.querySelectorAll(".carousel-item"));
 
     // Clone elements to create an infinite scrolling effect
-    const cloneCount = carouselItems.length; // Number of clones
     carouselItems.forEach(item => {
         const clone = item.cloneNode(true);
         carouselSlide.appendChild(clone);
     });
 
-    // Set up GSAP animation for infinite scrolling
+    // GSAP animation for smooth infinite scrolling
     gsap.to(carouselSlide, {
-        x: `-=${carouselItems.length * 220}`, // Adjust based on item width + gap
-        duration: 20, // Adjust speed
+        x: `-=${carouselItems.length * 240}`, // Adjust width + gap
+        duration: 20, 
         ease: "linear",
         repeat: -1 // Infinite loop
     });
-
-    // Custom cursor effect
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-
-    document.addEventListener('mouseout', () => cursor.style.display = 'none');
-    document.addEventListener('mouseover', () => cursor.style.display = 'block');
-    document.addEventListener('mousedown', () => cursor.style.transform = 'scale(0.8)');
-    document.addEventListener('mouseup', () => cursor.style.transform = 'scale(1)');
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -165,25 +152,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // GSAP animations for various sections
-    gsap.from('nav', { duration: 1, y: '-100%', ease: 'bounce' });
-    gsap.from('.firstSection > div', { duration: 1, opacity: 0, x: -50, stagger: 0.2 });
-    gsap.from('.techItem', {
-        duration: 0.8,
-        opacity: 0,
-        y: 50,
-        stagger: 0.1,
-        scrollTrigger: {
-            trigger: '.techSection',
-            start: 'top center'
-        }
-    });
-
     // Parallax effect for first section
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        document.querySelector('.firstSection').style.transform = `translateY(${scrolled * 0.5}px)`;
+        document.querySelector('.firstSection').style.transform = `translateY(${window.pageYOffset * 0.5}px)`;
     });
+
 
     // Hover animation for tech items
     document.querySelectorAll('.techItem').forEach(item => {
