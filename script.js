@@ -191,3 +191,50 @@ document.addEventListener("DOMContentLoaded", function () {
         item.addEventListener('mouseleave', () => gsap.to(item, { scale: 1, duration: 0.3 }));
     });
 });
+
+
+
+// ----------------------------
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (name === "" || email === "" || message === "") {
+            formMessage.style.color = "red";
+            formMessage.textContent = "Please fill in all fields.";
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            formMessage.style.color = "red";
+            formMessage.textContent = "Please enter a valid email address.";
+            return;
+        }
+
+        formMessage.style.color = "green";
+        formMessage.textContent = "Your message has been sent successfully!";
+        form.reset();
+    });
+
+    function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // GSAP Animation for Contact Section
+    gsap.from(".contactSection", {
+        duration: 1,
+        opacity: 0,
+        y: 50,
+        scrollTrigger: {
+            trigger: ".contactSection",
+            start: "top center"
+        }
+    });
+});
